@@ -4,7 +4,7 @@ services:
     container_name: mysqldb
     image: mysql
     ports:
-      - "3307:3306"
+      - "3307:3307"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
@@ -12,7 +12,7 @@ services:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_PASSWORD: 1234
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -pedi0104%"]
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p1234"]
       timeout: 20s
       retries: 10
 
@@ -23,11 +23,11 @@ services:
     restart: on-failure
     build: .
     ports:
-      - "8080:8080"
+      - "8090:8090"
     environment:
       MYSQL_HOST: mysqldb
       MYSQL_USER: root
-      MYSQL_PASSWORD: edi0104%
+      MYSQL_PASSWORD: 1234
       MYSQL_PORT: 3306    # we are in same network so we connect internally.
     depends_on:
       mysqldb:

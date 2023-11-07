@@ -4,6 +4,7 @@ import com.reservation.hotelsJuan.mgnreservation.dto.ErrorResponseDto;
 import com.reservation.hotelsJuan.mgnreservation.dto.ReservationRequestDto;
 import com.reservation.hotelsJuan.mgnreservation.dto.ReservationResponseDto;
 import com.reservation.hotelsJuan.mgnreservation.dto.SuiteDto;
+import com.reservation.hotelsJuan.mgnreservation.entity.Suite;
 import com.reservation.hotelsJuan.mgnreservation.exception.BadRequestException;
 import com.reservation.hotelsJuan.mgnreservation.service.SuiteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,8 @@ public class SuiteController {
         // Implementa la lógica para buscar suites (suites) según el número de página
         // y valida los encabezados de solicitud
         try {
-            List<SuiteDto> suitDTOList = suiteService.getSuites(page, clientId, secretId, correlationId);
-            return ResponseEntity.ok().body(suitDTOList); // Para una respuesta exitosa (200)
+            List<Suite> suites = suiteService.getSuites(page, clientId, secretId, correlationId);
+            return ResponseEntity.ok().body(suites); // Para una respuesta exitosa (200)
         } catch (BadRequestException e) {
             return ResponseEntity.status(400).body(e.getMessage()); // Para un error de solicitud (400)
         }

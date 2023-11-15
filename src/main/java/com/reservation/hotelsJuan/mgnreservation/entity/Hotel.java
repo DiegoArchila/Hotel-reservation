@@ -2,17 +2,16 @@ package com.reservation.hotelsJuan.mgnreservation.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
+
 
 @Data
 @Entity
 @Table(name = "Hotels")
-public class Hotel {
+public class Hotel implements Serializable {
 
     @Id
     @Column(name = "id", length = 50)
@@ -21,14 +20,15 @@ public class Hotel {
     @Column(name = "name", length = 255, nullable = false)
     private String name;
 
-    @Column(name = "numberSuits")
-    private int numberSuits;
+    @Column(name = "number_suits")
+    private Integer numberSuits;
 
     @Column(name = "address", length = 255)
     private String address;
 
-    @Column(name = "dateInit")
+    @Column(name = "date_init",  updatable = false, nullable = false)
     private Date dateInit;
+
 }
 
 

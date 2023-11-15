@@ -1,9 +1,11 @@
 package com.reservation.hotelsJuan.mgnreservation.entity;
-import java.time.LocalDate;
-import java.util.Date;
+
+
 
 import lombok.Data;
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @Entity
@@ -23,17 +25,16 @@ public class Suite {
         @Column(name = "status", length = 255)
         private String status;
 
-        @Column(name = "hotelId", length = 50)
-        private String hotelId;
+        @ManyToOne
+        @JoinColumn(name = "hotel", referencedColumnName = "id", insertable = false, updatable = false)
+        private Hotel hotel;
 
         @Column(name = "price")
         private int price;
 
-        @Column(name = "dateStatus")
-        private Date dateStatus;
+        @Column(name = "date_status")
+        private LocalDate dateStatus;
 
-        @ManyToOne
-        @JoinColumn(name = "hotelId", referencedColumnName = "id", insertable = false, updatable = false)
-        private Hotel hotel;
+
 }
 

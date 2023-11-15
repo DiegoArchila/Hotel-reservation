@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/mgn-reservation")
+@RequestMapping("/api/mgn-reservation")
 public class SuiteController {
 
 
@@ -26,7 +26,7 @@ public class SuiteController {
         this.suiteService = suiteService;
     }
 
-    @GetMapping("/suits/{page}")
+    @GetMapping("/v1/suits/{page}")
     public ResponseEntity<?> searchSuits(@PathVariable int page, @RequestHeader("clientId") String clientId,
                                          @RequestHeader("secretId") String secretId,
                                          @RequestHeader("correlationId") String correlationId) {
@@ -42,7 +42,7 @@ public class SuiteController {
 
 
 
-    @PostMapping("/suite")
+    @PostMapping("/V1/suite")
     public ResponseEntity<?> createReservation(@RequestBody ReservationRequestDto request,
                                                @RequestHeader("clientId") String clientId,
                                                @RequestHeader("secretId") String secretId,

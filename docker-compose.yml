@@ -32,3 +32,11 @@ services:
     depends_on:
       mysqldb:
         condition: service_healthy
+
+  jenkins-app:
+    container_name: jenkins
+    image: jenkins/jenkins:lts-jdk17
+    restart: on-failure
+    build: .
+    ports:
+      - "8080:8080"
